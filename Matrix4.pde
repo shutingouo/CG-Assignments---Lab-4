@@ -32,31 +32,58 @@ static public class Matrix4{
     
   }
   void makeRotX(float a) {
-    // TODO HW2
-    // You need to implement the rotation of x-axis matrix here.
-     makeIdentity();
+      makeIdentity();   // start with identity
+      float c = cos(a);
+      float s = sin(a);
+  
+      m[0] = 1;   m[1] = 0;   m[2] = 0;   m[3] = 0;
+      m[4] = 0;   m[5] = c;   m[6] = -s;  m[7] = 0;
+      m[8] = 0;   m[9] = s;   m[10]= c;   m[11]= 0;
+      m[12]= 0;   m[13]= 0;   m[14]= 0;   m[15]= 1;
   }
+  
   void makeRotY(float a) {
-    // TODO HW3
-    // You need to implement the rotation of y-axis matrix here.
-     makeIdentity();
+      makeIdentity();   // start with identity
+      float c = cos(a);
+      float s = sin(a);
+  
+      m[0] = c;   m[1] = 0;   m[2] = s;   m[3] = 0;
+      m[4] = 0;   m[5] = 1;   m[6] = 0;   m[7] = 0;
+      m[8] = -s;  m[9] = 0;   m[10]= c;   m[11]= 0;
+      m[12]= 0;   m[13]= 0;   m[14]= 0;   m[15]= 1;
   }
+  
   void makeRotZ(float a) {
-    // TODO HW3
-    // You need to implement the rotation of z-axis matrix here.
-     makeIdentity();
+      makeIdentity();   // start with identity
+      float c = cos(a);
+      float s = sin(a);
+  
+      m[0] = c;   m[1] = -s;  m[2] = 0;   m[3] = 0;
+      m[4] = s;   m[5] =  c;  m[6] = 0;   m[7] = 0;
+      m[8] = 0;   m[9] =  0;  m[10]= 1;   m[11]= 0;
+      m[12]= 0;   m[13]= 0;   m[14]= 0;   m[15]= 1;
   }
+
   
   void makeTrans(Vector3 t) {
     // TODO HW2
     // You need to implement the translate matrix here.
-     makeIdentity();
+    makeIdentity();   // 先設成單位矩陣
+    m[3]  = t.x;      // 第1列最後一格 → tx
+    m[7]  = t.y;      // 第2列最後一格 → ty
+    m[11] = t.z;      // 第3列最後一格 → tz
+    
   }
   void makeScale(Vector3 s) {
     // TODO HW2
-    // You need to implement the scale matrix here.     
-     makeIdentity();
+    // You need to implement the scale matrix here.
+    makeIdentity();   // 先設成單位矩陣
+    m[0]  = s.x;      // x 軸縮放
+    m[5]  = s.y;      // y 軸縮放
+    m[10] = s.z;      // z 軸縮放
   }
+  
+  
   
   void makeMirror(){
     m[0]  = -1;  m[1]  = 0.0f; m[2]  = 0.0f; m[3]  = 0.0f;

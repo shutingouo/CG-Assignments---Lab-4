@@ -104,9 +104,19 @@ public class GameObject {
     }
 
     Matrix4 localToWorld() {
-        // TODO HW3
-        // You need to calculate the model Matrix here.
-        return Matrix4.Identity();
+        // Build scale matrix
+        Matrix4 S = Matrix4.Scale(transform.scale);
+    
+        // Build rotation matrix (compose rotations in Z, X, Y order or whichever convention you use)
+        Matrix4 R = Matrix4.RotZ(transform.rotation.z)
+                      .mult(Matrix4.RotX(transform.rotation.x))
+                      .mult(Matrix4.RotY(transform.rotation.y));
+    
+        // Build translation matrix
+        Matrix4 T = Matrix4.Trans(transform.position);
+    
+        // Model matrix = T * R * S
+        return T.mult(R).mult(S);
     }
 
     Matrix4 worldToLocal() {
